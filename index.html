@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Ludo | Home</title>
+
+    <style>
+      * {
+        box-sizing: border-box;
+        margin: 0px;
+        padding: 0px;
+        font-family: sans-serif;
+        /* text-align: center; */
+      }
+
+      #parent_div {
+        width: 100%;
+        height: 100vh;
+        background-color: blueviolet;
+        padding: -10px;
+      }
+      #background_image {
+        position: fixed;
+        top: 3px;
+        width: 100%;
+        height: 99vh;
+      }
+
+      #heading_player {
+        position: relative;
+        z-index: 1;
+        width: 100%;
+        text-align: center;
+        top: 30px;
+        color: rgb(255, 255, 255);
+        font-family: monospace;
+      }
+
+      #player_input_box {
+        width: 100%;
+        display: flex;
+        justify-content: space-evenly;
+        position: absolute;
+        top: 13vh;
+        z-index: 1;
+      }
+
+      #player_input_box input {
+        height: 40px;
+        border: 2px dashed rgb(182, 216, 7);
+        background-color: rgba(137, 43, 226, 0.248);
+        color: white;
+        border-radius: 10px;
+        padding: 20px;
+        font-size: large;
+      }
+
+      #player_input_box input::placeholder {
+        text-align: center;
+        color: white;
+        opacity: 1; /* Firefox */
+      }
+
+      #play_btn > img {
+        position: relative;
+        z-index: 1;
+        border-radius: 50%;
+        width: 50px;
+        top: 450px;
+        left: 48vw;
+        animation: scaleup 2s infinite linear;
+        border: 3px solid yellow;
+        box-sizing: border-box;
+      }
+      @keyframes scaleup {
+        0% {
+          transform: rotate(180deg) scale(1.5);
+          opacity: 50%;
+        }
+        50% {
+          transform: rotate(380deg) scale(1.7);
+          opacity: 100%;
+        }
+        100% {
+          transform: rotate(180deg) scale(1.5);
+          opacity: 60%;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div id="parent_div">
+      <img id="background_image" src="./main/ludo_background.png" alt="" />
+      <div id="heading_player">
+        <h2>Enter Players Name</h2>
+      </div>
+      <div id="player_input_box">
+        <input id="player1" type="text" placeholder="Player 1" />
+        <input id="player2" type="text" placeholder="Player 2" />
+      </div>
+
+      <div id="play_btn">
+        <img src="./main/play.png" alt="" />
+      </div>
+    </div>
+  </body>
+</html>
+
+<script>
+  let player = {
+    p1: document.querySelector("#player1").value,
+    p2: document.querySelector("#player2").value,
+  };
+
+  let play_btn = document.querySelector("#play_btn");
+
+  play_btn.addEventListener("click", () => {
+    let player = {
+      p1: document.querySelector("#player1").value,
+      p2: document.querySelector("#player2").value,
+    };
+
+    localStorage.setItem("player", JSON.stringify(player));
+
+    if (player.p1 == "" || player.p2 == "") {
+      alert("Please enter players name");
+    } else {
+      window.location.href = "./main.html";
+    }
+  });
+</script>
