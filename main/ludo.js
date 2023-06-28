@@ -66,8 +66,16 @@ export class Ludo {
         this.listenPieceClick();
 
         this.resetGame();
+        this.listenGoBack();
 
+    }
 
+    listenGoBack(){
+        UI.listenGoBack(this.handleGoBack);
+    }
+
+    handleGoBack(){
+        window.location.href = './index.html'
     }
 
 
@@ -99,6 +107,7 @@ export class Ludo {
     incrementTurn() {
         this.turn = this.turn === 0 ? 1 : 0;
         this.state = STATE.DICE_NOT_ROLLED;
+        
     }
 
     getEligiblePieces(player) {
@@ -137,6 +146,7 @@ export class Ludo {
 
         this.turn = 0;
         this.state = STATE.DICE_NOT_ROLLED;
+        document.querySelector('.dice_img').src = `./main/dice0.gif`;
     }
 
     listenPieceClick() {
@@ -178,6 +188,11 @@ export class Ludo {
     }
 
     movePiece(player, piece, moveBy) {
+
+        setTimeout(() => {
+            document.querySelector('.dice_img').src = `./main/dice0.gif`;
+        } , 800 )
+
 
         const currentPosition = this.currentPositions[player][piece];
 

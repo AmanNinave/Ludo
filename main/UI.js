@@ -1,5 +1,7 @@
 import { COORDINATES_MAP, PLAYERS, STEP_LENGTH } from './constants.js';
 
+
+
 const playerPiecesElements = {
     p1 : document.querySelectorAll('[player-id="p1"].player-piece'),
     p2 : document.querySelectorAll('[player-id="p2"].player-piece')
@@ -11,6 +13,10 @@ let playerNames = JSON.parse(localStorage.getItem('player'));
 const diceButtonElement = document.querySelector("#dice-btn");
 
 export class UI {
+
+    static listenGoBack(callback){
+        document.querySelector('#backbutton').addEventListener('click', callback)
+    }
 
     static listenDiceClick(callback){
         diceButtonElement.addEventListener("click" , callback);
@@ -72,6 +78,7 @@ export class UI {
 
     static enableDice() {
         diceButtonElement.removeAttribute('disabled')
+        
     }
 
     static disableDice() {
@@ -92,7 +99,12 @@ export class UI {
     }
 
     static setDiceValue(value){
-        document.querySelector('.dice-value').innerText = value;
+
+        document.querySelector('.dice_img').src = `./main/dice0.gif`; 
+
+        setTimeout( () => {
+            document.querySelector('.dice_img').src = `./main/dice${value}.png`; 
+        } , 400 );
     }
 
 }
