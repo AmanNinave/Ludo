@@ -20,7 +20,7 @@ body {
 
 #player_names {
     position: absolute;
-    z-index: 1;
+    z-index: 0;
     top: 250px;
     display: flex;
     width: 99.2%;
